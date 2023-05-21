@@ -17,7 +17,7 @@ tasks:
       - cmd: |
               PYTHONPATH=$PYTHONPATH:{{.FAIRSEQ_ROOT}} \
               python {{.FAIRSEQ_ROOT}}/examples/sign_language/scripts/train_spm.py \
-                --tsv-file {{.SAVE_DIR}}/cvpr23.fairseq.mediapipe.train.how2sign.tsv \
+                --tsv-file {{.SAVE_DIR}}/cvpr23.fairseq.i3d.train.how2sign.tsv \
                 --spm-prefix {{.SAVE_DIR}}/vocab/cvpr23.train.how2sign.unigram{{.VOCAB_SIZE}}_lowercased \
                 --vocab-size {{.VOCAB_SIZE}} \
                 --vocab-type unigram \
