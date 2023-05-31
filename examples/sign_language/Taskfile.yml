@@ -3,6 +3,9 @@ version: '3'
 dotenv: [.env]
 
 tasks:
+  greet:
+    cmds:
+      - cmd: echo "Testing, {{.VOCAB_SIZE}}!"
 
   how2sign:train_sentencepiece_lowercased:
     desc: Train SentencePiece models for the How2Sign dataset, for lowercased text.
@@ -31,26 +34,9 @@ tasks:
       - "{{.SAVE_DIR}}/vocab/cvpr23.train.how2sign.unigram{{.VOCAB_SIZE}}_tokenized.txt"
       - "{{.SAVE_DIR}}/vocab/cvpr23.train.how2sign.unigram{{.VOCAB_SIZE}}_tokenized.vocab"
   
-  greet:
-    cmds:
-      - cmd: echo "Testing, {{.DATA_DIR}}!"
 
   train_slt:
-    preconditions:
-      - sh: "[[ -d {{.DATA_DIR}} ]]"
-        msg: Specify the DATA_DIR in the .env file
-      - sh: "[[ {{.SAVE_DIR}} ]]"
-        msg: Specify the SAVE_DIR in the .env file
-      - sh: "[[ {{.WANDB_ENTITY}} ]]"
-        msg: Specify the WANDB_ENTITY in the .env file
-      - sh: "[[ {{.WANDB_PROJECT}} ]]"
-        msg: Specify the WANDB_PROJECT in the .env file
-      - sh: "[ {{.NUM_GPUS}} -gt 0 ]"
-        msg: Use at least 1 GPU to train the model
-      - sh: '[ "{{.EXPERIMENT}}" ]'
-        msg: Specify a name for the EXPERIMENT
-      - sh: '[ "{{.CONFIG_DIR}}/{{.EXPERIMENT}}.yaml" ]'
-        msg: The yaml does not exist
+
     vars:
       BASE_UPDATE_FREQ: 1
       NUM_GPUS: 1
@@ -72,19 +58,6 @@ tasks:
 
 
   generate:
-    preconditions:
-      - sh: "[[ -d {{.DATA_DIR}} ]]"
-        msg: Specify the DATA_ROOT in the .env file
-      - sh: "[[ {{.SAVE_DIR}} ]]"
-        msg: Specify the SAVE_DIR in the .env file
-      - sh: '[ "{{.EXPERIMENT}}" ]'
-        msg: Specify a name for the EXPERIMENT
-      - sh: '[ "{{.CKPT}}" ]'
-        msg: Specify a CKPT
-      - sh: '[ "{{.SUBSET}}" ]'
-        msg: Specify a SUBSET
-      - sh: '[ "{{.SPM_MODEL}}" ]'
-        msg: Specify a SPM_MODEL
 
     cmds:
       - cmd: echo "Generating outputs for '{{.EXPERIMENT}}' ({{.SUBSET}}) with checkpoint '{{.CKPT}}'"
@@ -119,4 +92,3 @@ tasks:
         sh: echo {{.SAVE_DIR}}/{{.EXPERIMENT}}/ckpts/{{.CKPT}}
       OUT_FILE:
         sh: tmp={{.CKPT_FILE}}; echo "{{.SAVE_DIR}}/{{.EXPERIMENT}}/generates/{{.SUBSET}}/$(basename ${tmp::-3}).out"
-
