@@ -18,7 +18,7 @@ checkpoint:
   save_interval: 2
   #save_interval_updates: 927*2 #Default is at the end of epoch
   #keep_interval_updates: 1
-  best_checkpoint_metric: reduced_sacrebleu
+  best_checkpoint_metric: sacrebleu
   maximize_best_checkpoint_metric: True
   keep_best_checkpoints: 2
   patience: 10000
@@ -45,11 +45,11 @@ task:
   pre_tokenizer: moses #Should we also do a truecaser? Check this when you can
   eval_bleu_config:
     sacrebleu_tokenizer: 13a
-    sacrebleu_lowercase: False
+    sacrebleu_lowercase: True
     sacrebleu_char_level: False
   eval_chrf: True
-  eval_reducedBLEU: True
-  eval_reducedchrf: True
+  eval_reducedBLEU: False
+  eval_reducedchrf: False
   eval_print_samples: True
 
 model:
