@@ -45,7 +45,7 @@ task:
   #pre_tokenizer: moses #Should we also do a truecaser? Check this when you can
   eval_bleu_config:
     sacrebleu_tokenizer: 13a
-    sacrebleu_lowercase: True
+    sacrebleu_lowercase: False
     sacrebleu_char_level: False
   eval_chrf: True
   eval_reducedBLEU: False
