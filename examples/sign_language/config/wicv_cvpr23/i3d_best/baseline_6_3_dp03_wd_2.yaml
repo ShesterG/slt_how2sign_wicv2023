@@ -28,7 +28,7 @@ dataset:
   valid_subset: cvpr23.fairseq.i3d.val.how2sign           
   num_workers: 4
   batch_size: 32
-  max_tokens: 30_000                          # 640s @ 25fps
+  max_tokens: 16_000                          # 640s @ 25fps
   skip_invalid_size_inputs_valid_test: True
   validate_interval: 2
 
