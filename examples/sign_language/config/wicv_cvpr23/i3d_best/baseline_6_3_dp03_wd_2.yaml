@@ -28,21 +28,21 @@ dataset:
   valid_subset: cvpr23.fairseq.i3d.val.how2sign           
   num_workers: 4
   batch_size: 32
-  max_tokens: 16_000                          # 640s @ 25fps
+  max_tokens: 30_000                          # 640s @ 25fps
   skip_invalid_size_inputs_valid_test: True
   validate_interval: 2
 
 task:
   _name: sign_to_text
   data: ${env:I3D_DIR}                        #check where we should put the tsv file
-  max_source_positions: 1024                  
+  max_source_positions: 10240                  
   max_target_positions: 1024
   feats_type: "i3d"
   eval_gen_config:
     beam: 5
   eval_bleu: True
   #eval_bleu_args: '{"beam": 5, "max_len_a": 0, "max_len_b": 30, "lenpen": 1.0}'
-  pre_tokenizer: moses #Should we also do a truecaser? Check this when you can
+  #pre_tokenizer: moses #Should we also do a truecaser? Check this when you can
   eval_bleu_config:
     sacrebleu_tokenizer: 13a
     sacrebleu_lowercase: True
