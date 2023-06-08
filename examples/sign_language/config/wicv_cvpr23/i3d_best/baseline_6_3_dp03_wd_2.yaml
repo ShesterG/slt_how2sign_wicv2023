@@ -45,7 +45,7 @@ task:
   #pre_tokenizer: moses #Should we also do a truecaser? Check this when you can
   eval_bleu_config:
     sacrebleu_tokenizer: 13a
-    sacrebleu_lowercase: False
+    sacrebleu_lowercase: True
     sacrebleu_char_level: False
   eval_chrf: True
   eval_reducedBLEU: False
@@ -97,4 +97,4 @@ lr_scheduler:
   lr_shrink: 1
 
 bpe:
-  sentencepiece_model: ${env:SAVE_DIR}/vocab/cvpr23.train.how2sign.unigram1000_lowercased.model
+  sentencepiece_model: ${env:SAVE_DIR}/vocab/cvpr23.train.how2sign.unigram500_lowercased.model
