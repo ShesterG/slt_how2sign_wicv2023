@@ -5,7 +5,7 @@ dotenv: [.env]
 tasks:
   greet:
     cmds:
-      - cmd: echo "Testing, {{.VOCAB_SIZE}}!"
+      - cmd: echo "Testing, {{.DATA_DIR}}!"
 
   how2sign:train_sentencepiece_lowercased:
     desc: Train SentencePiece models for the How2Sign dataset, for lowercased text.
@@ -84,7 +84,7 @@ tasks:
         silent: false
     vars:
       SEED: 48151623
-      MAX_SOURCE_POSITIONS: 1024
+      MAX_SOURCE_POSITIONS: 10240
       MAX_TARGET_POSITIONS: 1024
       MAX_TOKENS: 16_000
       BEAM_SIZE: 5
