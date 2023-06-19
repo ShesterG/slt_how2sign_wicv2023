@@ -70,7 +70,7 @@ tasks:
               --task sign_to_text \
               --gen-subset {{.SUBSET}} \
               --seed {{.SEED}} \
-              --batch-size 32 \
+              --batch-size 128 \
               --scoring sacrebleu \
               --max-source-positions {{.MAX_SOURCE_POSITIONS}} \
               --max-target-positions {{.MAX_TARGET_POSITIONS}} \
@@ -86,9 +86,9 @@ tasks:
       SEED: 48151623
       MAX_SOURCE_POSITIONS: 10240
       MAX_TARGET_POSITIONS: 1024
-      MAX_TOKENS: 16_000
+      MAX_TOKENS: 64_000
       BEAM_SIZE: 5
       CKPT_FILE:
         sh: echo {{.SAVE_DIR}}/{{.EXPERIMENT}}/ckpts/{{.CKPT}}
       OUT_FILE:
-        sh: tmp={{.CKPT_FILE}}; echo "{{.SAVE_DIR}}/{{.EXPERIMENT}}/generates/{{.SUBSET}}/$(basename ${tmp::-3}).out"
+        sh: tmp={{.CKPT_FILE}}; echo "{{.SAVE_DIR}}/{{.EXPERIMENT}}/generates/{{.SLANG}}/{{.SUBSET}}/$(basename ${tmp::-3}).out"
